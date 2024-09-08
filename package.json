@@ -9,6 +9,7 @@
       }
     ]
   },
+  "homepage": "https://chomens.github.io/musicdex",
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js' & source-map-explorer --gzip 'build/static/js/*.js'",
     "build": "react-scripts build",
