@@ -1,23 +1,13 @@
-name: test
+name: mate
 
 on: [push, pull_request]
 
 jobs:
   test:
-    name: Test
+    name: mate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build
-        run: yarn build
-
-      - name: Test
-        run: yarn test
+      - name: Build and Deploy React app to GitHub Pages
+        uses: omkartapale/react-deployment-gh-pages@v1.0.0
