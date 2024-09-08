@@ -14,13 +14,8 @@ jobs:
       - run: yarn
       - run: yarn build
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          push_options: "--force"
-          repository: "./build/"
-
-      # - run: git config user.name github-actions
-      # - run: git config user.email github-actions@github.com
-      # - run: git --work-tree build add --all
-      # - run: git commit -m "Automatic Build and Deploy run by GitHub Actions"
-      # - run: git push origin HEAD:gh-pages --force
+      - run: git config user.name github-actions
+      - run: git config user.email github-actions@github.com
+      - run: git --work-tree build add --all
+      - run: git commit --no-verify -m "Automatic Build and Deploy run by GitHub Actions"
+      - run: git push origin HEAD:gh-pages --no-verify --force
