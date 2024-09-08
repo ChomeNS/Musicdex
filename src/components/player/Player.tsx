@@ -7,6 +7,13 @@ import { usePlayer, getID, usePlayerStats } from "./YoutubePlayer";
 import { useTrackSong } from "../../modules/services/songs.service";
 import { PlayerContext } from "../layout/Frame";
 import { useKeyboardEvents } from "./PlayerKeyboardControls";
+import {
+  setName,
+  setTitle,
+  update,
+  stopRPC,
+  setImageUrl,
+} from "../../modules/discord/discord";
 
 const retryCounts: Record<string, number> = {};
 const trackedSongs: Set<string> = new Set();
@@ -57,9 +64,19 @@ export function Player() {
   // CurrentSong/repeat update event
   useEffect(() => {
     if (currentSong) {
+      setTitle(currentSong.name);
+      setName(
+        currentSong.channel.english_name ?? currentSong.channel.name,
+        currentSong.original_artist,
+      );
+      setImageUrl(currentSong.art);
+      update();
+
       loadVideoAtTime(currentSong?.video_id, currentSong?.start);
       state === PlayerStates.PLAYING && setIsPlaying(true);
     } else {
+      stopRPC();
+
       player?.stopVideo();
       setIsPlaying(false);
     }
