@@ -1,9 +1,10 @@
 name: Deploy to Musicdex (Staging)
 
 on:
-  push:
-    branches:
-      - dev
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - dev
 
 jobs:
   deploy:
